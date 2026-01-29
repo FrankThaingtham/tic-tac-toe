@@ -92,7 +92,7 @@ const Game = (() => {
 const display = (() => {
     const boardEl = document.querySelector("#board");
     const cells = boardEl.querySelectorAll(".cell");
-    const statusEl = document.querySelector("#status");
+    const statusEl = document.querySelector("#result");
 
     const renderBoard = () => {
         const board = Gameboard.getBoard();
@@ -103,26 +103,25 @@ const display = (() => {
 
     const renderStatus = () => {
         const status = Game.getStatus();
-
         if (!statusEl) return;
 
         if (status.gameOver) {
-        if (status.result?.type === "win") {
+            if (status.result?.type === "win") {
             statusEl.textContent = `${status.result.winner.name} wins! (${status.result.mark})`;
-        } else if (status.result?.type === "tie") {
+            } else if (status.result?.type === "tie") {
             statusEl.textContent = `It's a tie!`;
-        } else {
+            } else {
             statusEl.textContent = `Game over.`;
-        }
-        return;
+            }
+            return;
         }
 
         if (status.currentPlayer) {
-        statusEl.textContent = `${status.currentPlayer.name}'s turn (${status.currentPlayer.mark})`;
+            statusEl.textContent = `${status.currentPlayer.name}'s turn (${status.currentPlayer.mark})`;
         } else {
-        statusEl.textContent = `Click Start to begin.`;
+            statusEl.textContent = `Click Start to begin.`;
         }
-    };
+};
 
     const render = () => {
         renderBoard();
