@@ -147,3 +147,11 @@ board.addEventListener("click", (event) => {
 
 Game.startGame("Alice", "Bob");
 display.render();
+
+const restartBtn = document.querySelector("#restart");
+
+restartBtn.addEventListener("click", () => {
+  // For now: restart with fixed names
+  Game.startGame("Alice", "Bob");
+  display.render();
+});
