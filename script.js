@@ -14,4 +14,7 @@ function gameBoard() {
 
 }
 
+function createPlayer(name, mark) {
+    return {name, mark}
+}
 const Gameboard = gameBoard();
