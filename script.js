@@ -23,6 +23,7 @@ const Game = (() => {
     let players = [];
     let currentPlayerIndex = 0;
     let gameOver = false;
+    let result = null;
 
     const win = [
         [0, 1, 2],
@@ -44,12 +45,13 @@ const Game = (() => {
     const checkTie = (board) => board.every((cell) => cell !== "");
 
     const startGame = (name1, name2) => {
-        const player1 = createPlayer(name1, "X")
-        const player2 = createPlayer(name2, "O")
-        players = [player1, player2]
-        currentPlayerIndex = 0
+        const player1 = createPlayer(name1, "X");
+        const player2 = createPlayer(name2, "O");
+        players = [player1, player2];
+        currentPlayerIndex = 0;
         Gameboard.resetBoard();
-        gameOver = false
+        gameOver = false;
+        result = null;
     };
 
     const playTurn = (index) => {
@@ -77,6 +79,12 @@ const Game = (() => {
         currentPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
 
     };
+    const getStatus = () => ({
+        gameOver,
+        currentPlayer: players[currentPlayerIndex] || null,
+        result,
+        board: Gameboard.getBoard(),
+    });
 
-  return { startGame, playTurn };
+    return { startGame, playTurn, getStatus};
 })();
