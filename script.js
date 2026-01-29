@@ -131,3 +131,19 @@ const display = (() => {
 
     return { render };
 })();
+
+const board = document.getElementById("board");
+
+board.addEventListener("click", (event) => {
+    const clickedCell = event.target.closest(".cell");
+    if (!clickedCell) return;
+
+    const index = Number(clickedCell.dataset.index);
+    if (!Number.isInteger(index)) return;
+
+    Game.playTurn(index);
+    display.render();
+});
+
+Game.startGame("Alice", "Bob");
+display.render();
